@@ -47,6 +47,7 @@ module.exports = async (app, opts) => {
         "select password from users where email=$1",
         [email]
       );
+      console.log(userPasswordQuery.rows[0]);
       const userPassword = userPasswordQuery.rows[0].password;
       const validPassword = await app.bcrypt.compare(password, userPassword);
       if (!validPassword) {
@@ -54,7 +55,6 @@ module.exports = async (app, opts) => {
         errors.password.invalid = "Invalid Credentials";
       }
     }
-
     if (app.utils.has(errors)) return errors;
     return { status: 200, msg: "User logged in successfully" };
   });

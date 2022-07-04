@@ -1,0 +1,4 @@
+{% extends 'index.html' %} {% block title %}{{title}}{% endblock %} {% block
+body %} {% for link in links %}
+<a href="{{link.url}}">{{link.text}}</a>
+{% endfor %} {% endblock %}
