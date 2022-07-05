@@ -1,12 +1,10 @@
 document.addEventListener("DOMContentLoaded", async () => {
   let page = 1;
   let lastPage = parseInt(qs("#lastPage").dataset.page);
-  console.log(page);
-  console.log(lastPage);
   const table = qs("#table");
   const next = qs(".next");
   const prev = qs(".prev");
-  const links = qsa(".pagination>li>a");
+  const links = qsa(".pagination>li>span");
   links.forEach((btn) =>
     btn.addEventListener("click", async (e) => {
       let action = e.target.classList.contains("next")
@@ -22,16 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           classListArray.filter((listItem) => listItem.match(/[0-9]+/))
         );
       }
-      window.location.replace(`/home/ptable/pagination/${page}`);
-      //const req = await fetch(`/home/ptable/pagination/${page}`);
-      //const res = await req;
-      //console.log(res);
-      //const reader = res.body.getReader();
-      //const red = reader.read().then(({ done, value }) => {
-      //console.log(done);
-      //console.log(value);
-      //});
-      //console.log(await reader.read());
+      const req = await fetch(`/home/ptable?curPage=${page}`);
     })
   );
 });

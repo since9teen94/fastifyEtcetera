@@ -39,14 +39,8 @@ module.exports = async (app, opts) => {
     return res.view("officeQuotes.html", context);
   });
   app.get("/ptable", async (req, res) => {
-    let curPage = 1;
+    let curPage = parseInt(req.query.curPage) || 1;
     const context = app.utils.ptable(curPage, res);
-    return res.view("ptable.html", context);
-  });
-  app.get("/ptable/pagination/:curPage", async (req, res) => {
-    let { curPage } = req.params;
-    curPage = parseInt(curPage);
-    const context = app.utils.ptable(curPage, res);
-    return res.view("ptable.html", context);
+    return res.view('ptable.html', context);
   });
 };

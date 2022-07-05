@@ -16,7 +16,7 @@ module.exports = fp(async (app, opts) => {
         arr.length > size
           ? [arr.slice(0, size), ...chunkArray(arr.slice(size), size)]
           : [arr];
-      const chunkedElements = chunkArray(elements, 5);
+      const chunkedElements = chunkArray(elements, 10);
       const lastPage = chunkedElements.length;
       const context = {
         title: "Periodic Table",

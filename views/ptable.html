@@ -1,35 +1,38 @@
-{% macro pagination(curPage, lastPage) %} {% if curPage > 1 %}
-<li class="page-item"><a class="page-link prev" href="#">Previous</a></li>
-{% endif %} {% if curPage-3 >= 3 %}
+{% macro invis() %}
+<li class="page-item invisible"><a class="page-link" href="#">0</a></li>
+{% endmacro %} {% macro page(pageNum, active='') %}
 <li class="page-item">
-  <a class="page-link {{curPage-3}}" href="#">{{curPage-3}}</a>
+  <a
+    class="page-link {{pageNum}} {{active}}"
+    href="/home/ptable?curPage={{pageNum}}"
+    >{{pageNum}}</a
+  >
 </li>
-{% endif %} {% if curPage-2 >= 2 %}
+{% endmacro %} {% macro pagination(curPage, lastPage) %} {% if curPage > 1 %}
 <li class="page-item">
-  <a class="page-link {{curPage-2}}" href="#">{{curPage-2}}</a>
+  <a class="page-link prev" href="/home/ptable?curPage={{curPage-1}}">Prev</a>
 </li>
-{% endif %} {% if curPage-1 >= 1 %}
+{% else %}
 <li class="page-item">
-  <a class="page-link {{curPage-1}}" href="#">{{curPage-1}}</a>
+  <a class="page-link prev disabled" href="#">Prev</a>
 </li>
-{% endif %}
+{% endif %} {% if curPage-2 >= 1 %} {{page(curPage-2)}} {% else %} {{invis()}}
+{% endif %} {% if curPage-1 >= 1 %} {{page(curPage-1)}} {% else %} {{invis()}}
+{% endif %} {{page(curPage, 'active')}} {% if curPage+1 <= lastPage %}
+{{page(curPage+1)}} {% else %} {{invis()}} {% endif %} {% if curPage+2 <=
+lastPage %} {{page(curPage+2)}} {% else %} {{invis()}} {% endif %} {% if curPage
+< lastPage %}
 <li class="page-item">
-  <a class="page-link {{curPage}}" href="#">{{curPage}}</a>
+  <a class="page-link next" href="/home/ptable?curPage={{curPage+1}}">Next</a>
 </li>
-{% if curPage+1 <= lastPage %}
+{% else %}
 <li class="page-item">
-  <a class="page-link {{curPage+1}}" href="#">{{curPage+1}}</a>
+  <a class="page-link next disabled" href="#">Next</a>
 </li>
-{% endif %} {% if curPage+2 <= lastPage %}
-<li class="page-item">
-  <a class="page-link {{curPage+2}}" href="#">{{curPage+2}}</a>
-</li>
-{% endif %} {% if curPage < lastPage %}
-<li class="page-item"><a class="page-link next" href="#">Next</a></li>
 {% endif %} {% endmacro %} {% extends 'index.html' %} {% block title
 %}{{title}}{% endblock %} {% block body %}
-<div class="container">
-  <table id="table" class="table">
+<div class="container mt-4" id="ptable-container">
+  <table id="table" class="table table-striped">
     <thead class="thead-dark">
       <tr>
         {% for title in ['Name', 'Atomic Number','Symbol', 'Atomic Mass']%}
@@ -47,12 +50,10 @@
     </tr>
     {% endfor %}
   </table>
-  <nav>
-    <ul class="pagination">
+  <nav class="d-flex justify-content-center">
+    <ul class="pagination text-center">
       {{pagination(curPage, lastPage)}}
     </ul>
   </nav>
 </div>
-<div class="hidden" id="lastPage" data-page="{{lastPage}}"></div>
-<div class="hidden" id="curPage" data-page="{{curPage}}"></div>
 {% endblock %}
