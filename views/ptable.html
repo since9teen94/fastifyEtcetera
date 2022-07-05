@@ -1,0 +1,32 @@
+{% extends 'index.html' %} {% block title %}{{title}}{% endblock %} {% block
+body %}
+<div class="container">
+  <table id="table" class="table">
+    <thead class="thead-dark">
+      <tr>
+        {% for title in ['Name', 'Atomic Number','Symbol', 'Atomic Mass']%}
+        <th scope="col">{{title}}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody></tbody>
+    {% for element in elements %}
+    <tr>
+      <td>{{element.name}}</td>
+      <td>{{element.atomicNumber}}</td>
+      <td>{{element.symbol}}</td>
+      <td>{{element.atomicMass}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <nav>
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link prev" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link 1" href="#">1</a></li>
+      <li class="page-item"><a class="page-link 2" href="#">2</a></li>
+      <li class="page-item"><a class="page-link 23" href="#">3</a></li>
+      <li class="page-item"><a class="page-link next" href="#">Next</a></li>
+    </ul>
+  </nav>
+</div>
+{% endblock %}

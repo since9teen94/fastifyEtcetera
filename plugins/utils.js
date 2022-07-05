@@ -10,5 +10,12 @@ module.exports = fp(async (app, opts) => {
     year: function () {
       return new Date().getFullYear();
     },
+    chunkArray: function (obj) {
+      let { elements, size } = obj;
+      let arr = elements;
+      arr.length > size
+        ? [arr.slice(0, size), ...chunkArray(arr.slice(size), size)]
+        : [arr];
+    },
   });
 });
