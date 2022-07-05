@@ -42,25 +42,15 @@ module.exports = async (app, opts) => {
       title: "Periodic Table",
       year: app.utils.year(),
       elements: chunkedElements[0],
+      lastPage,
+      curPage: 1,
     };
     return res.view("ptable.html", context);
   });
-  app.get("/ptable/pagination", async (req, res) => {
-    const { action, curPage } = req.body;
-    switch (action) {
-      case "next":
-        curPage++;
-        break;
-      case "prev":
-        curPage--;
-        break;
-      case "custom":
-        curPage = curPage;
-        break;
-      default:
-        curPage = 1;
-        break;
-    }
+  app.get("/ptable/pagination/:curPage", async (req, res) => {
+    let { curPage } = req.params;
+    curPage = parseInt(curPage);
+    //have integers
     const getElements = async () => {
       const req = await fetch(
         "https://periodic-table-elements-info.herokuapp.com/elements"
@@ -79,6 +69,8 @@ module.exports = async (app, opts) => {
       title: "Periodic Table",
       year: app.utils.year(),
       elements: chunkedElements[curPage],
+      lastPage,
+      curPage,
     };
     return res.view("ptable.html", context);
   });

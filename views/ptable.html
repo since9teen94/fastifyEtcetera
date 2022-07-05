@@ -1,5 +1,33 @@
-{% extends 'index.html' %} {% block title %}{{title}}{% endblock %} {% block
-body %}
+{% macro pagination(curPage=0, lastPage=100) %} {% if curPage > 1 %}
+<li class="page-item"><a class="page-link prev" href="#">Previous</a></li>
+{% endif %} {% if curPage-3 >= 3 %}
+<li class="page-item">
+  <a class="page-link {{curPage-3}}" href="#">{{curPage-3}}</a>
+</li>
+{% endif %} {% if curPage-2 >= 2 %}
+<li class="page-item">
+  <a class="page-link {{curPage-2}}" href="#">{{curPage-2}}</a>
+</li>
+{% endif %} {% if curPage-1 >= 1 %}
+<li class="page-item">
+  <a class="page-link {{curPage-1}}" href="#">{{curPage-1}}</a>
+</li>
+{% endif %}
+<li class="page-item">
+  <a class="page-link {{curPage}}" href="#">{{curPage}}</a>
+</li>
+{% if curPage+1 <= lastPage %}
+<li class="page-item">
+  <a class="page-link {{curPage+1}}" href="#">{{curPage+1}}</a>
+</li>
+{% endif %} {% if curPage+2 <= lastPage %}
+<li class="page-item">
+  <a class="page-link {{curPage+2}}" href="#">{{curPage+2}}</a>
+</li>
+{% endif %} {% if curPage < lastPage %}
+<li class="page-item"><a class="page-link next" href="#">Next</a></li>
+{% endif %} {% endmacro %} {% extends 'index.html' %} {% block title
+%}{{title}}{% endblock %} {% block body %}
 <div class="container">
   <table id="table" class="table">
     <thead class="thead-dark">
@@ -21,12 +49,19 @@ body %}
   </table>
   <nav>
     <ul class="pagination">
+      {#
       <li class="page-item"><a class="page-link prev" href="#">Previous</a></li>
+      #} {#
       <li class="page-item"><a class="page-link 1" href="#">1</a></li>
+      #} {#
       <li class="page-item"><a class="page-link 2" href="#">2</a></li>
-      <li class="page-item"><a class="page-link 23" href="#">3</a></li>
+      #} {#
+      <li class="page-item"><a class="page-link 3" href="#">3</a></li>
+      #} {#
       <li class="page-item"><a class="page-link next" href="#">Next</a></li>
+      #} {{pagination(curPage, lastPage)}}
     </ul>
   </nav>
 </div>
+<div class="hidden" id="lastPage" data-page="{{lastPage}}"></div>
 {% endblock %}
