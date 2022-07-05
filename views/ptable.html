@@ -1,4 +1,4 @@
-{% macro pagination(curPage=0, lastPage=100) %} {% if curPage > 1 %}
+{% macro pagination(curPage, lastPage) %} {% if curPage > 1 %}
 <li class="page-item"><a class="page-link prev" href="#">Previous</a></li>
 {% endif %} {% if curPage-3 >= 3 %}
 <li class="page-item">
@@ -49,19 +49,10 @@
   </table>
   <nav>
     <ul class="pagination">
-      {#
-      <li class="page-item"><a class="page-link prev" href="#">Previous</a></li>
-      #} {#
-      <li class="page-item"><a class="page-link 1" href="#">1</a></li>
-      #} {#
-      <li class="page-item"><a class="page-link 2" href="#">2</a></li>
-      #} {#
-      <li class="page-item"><a class="page-link 3" href="#">3</a></li>
-      #} {#
-      <li class="page-item"><a class="page-link next" href="#">Next</a></li>
-      #} {{pagination(curPage, lastPage)}}
+      {{pagination(curPage, lastPage)}}
     </ul>
   </nav>
 </div>
 <div class="hidden" id="lastPage" data-page="{{lastPage}}"></div>
+<div class="hidden" id="curPage" data-page="{{curPage}}"></div>
 {% endblock %}

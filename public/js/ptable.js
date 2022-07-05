@@ -1,14 +1,7 @@
-const getElements = async () => {
-  const req = await fetch(
-    "https://periodic-table-elements-info.herokuapp.com/elements"
-  );
-  const res = await req.json();
-  return res;
-};
-
 document.addEventListener("DOMContentLoaded", async () => {
   let page = 1;
   let lastPage = parseInt(qs("#lastPage").dataset.page);
+  console.log(page);
   console.log(lastPage);
   const table = qs("#table");
   const next = qs(".next");
@@ -29,9 +22,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           classListArray.filter((listItem) => listItem.match(/[0-9]+/))
         );
       }
-      const req = await fetch(`/home/ptable/pagination/${page}`);
-      const res = await req;
-      console.log(res);
+      window.location.replace(`/home/ptable/pagination/${page}`);
+      //const req = await fetch(`/home/ptable/pagination/${page}`);
+      //const res = await req;
+      //console.log(res);
+      //const reader = res.body.getReader();
+      //const red = reader.read().then(({ done, value }) => {
+      //console.log(done);
+      //console.log(value);
+      //});
+      //console.log(await reader.read());
     })
   );
 });
