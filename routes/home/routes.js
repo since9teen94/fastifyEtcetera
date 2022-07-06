@@ -1,6 +1,6 @@
 module.exports = async (app, opts) => {
   app.get("/", async (req, res) => {
-    let features = app.info.cards[0].data;
+    let features = app.info.cards;
     features.forEach((feature, index) => {
       feature.index = parseInt(index);
     });
@@ -16,7 +16,7 @@ module.exports = async (app, opts) => {
     return res.view("game.html", context);
   });
   app.get("/skills", async (req, res) => {
-    let skills = app.info.cards[1].info;
+    let skills = app.info.skills;
     let skillArrays = app.utils.chunkArray(skills, 2);
     const context = {
       title: "Skills",
@@ -27,8 +27,8 @@ module.exports = async (app, opts) => {
     return res.view("skills.html", context);
   });
   app.get("/links", async (req, res) => {
-    const skills = require("../../public/js/skills.js").links;
-    const context = { title: "Skills", links, year: app.utils.year() };
+    const links = app.info.links;
+    const context = { title: "Links", links, year: app.utils.year() };
     return res.view("links.html", context);
   });
   app.get("/quotes", async (req, res) => {
