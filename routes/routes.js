@@ -8,7 +8,7 @@ module.exports = async (app, opts) => {
     return res.redirect("/login");
   });
   app.get("/", async (req, res) => {
-    return res.redirect("/login");
+    return res.redirect("/home");
   });
   app.get("/login", async (req, res) => {
     context = { title: "Log In", year: app.utils.year() };

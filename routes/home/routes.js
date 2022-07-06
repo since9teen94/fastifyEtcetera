@@ -16,8 +16,14 @@ module.exports = async (app, opts) => {
     return res.view("game.html", context);
   });
   app.get("/skills", async (req, res) => {
-    const skills = require("../../public/js/skills.js").skills;
-    const context = { title: "Skills", skills, year: app.utils.year() };
+    let skills = app.info.cards[1].info;
+    let skillArrays = app.utils.chunkArray(skills, 2);
+    const context = {
+      title: "Skills",
+      skillsOne: skillArrays[0],
+      skillsTwo: skillArrays[1],
+      year: app.utils.year(),
+    };
     return res.view("skills.html", context);
   });
   app.get("/links", async (req, res) => {
