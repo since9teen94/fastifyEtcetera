@@ -56,4 +56,6 @@ lastPage %} {{page(curPage+2)}} {% else %} {{invis()}} {% endif %} {% if curPage
     </ul>
   </nav>
 </div>
+<div class="hidden" id="curPage" data-page="{{curPage}}"></div>
+<div class="hidden" id="lastPage" data-page="{{lastPage}}"></div>
 {% endblock %}

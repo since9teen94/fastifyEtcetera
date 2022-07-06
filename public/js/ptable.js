@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  let page = 1;
+  let page = parseInt(qs("#curPage").dataset.page);
   let lastPage = parseInt(qs("#lastPage").dataset.page);
   const table = qs("#table");
   const next = qs(".next");
