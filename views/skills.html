@@ -1,4 +1,8 @@
 {% extends 'index.html' %} {% block title %}{{title}}{% endblock %} {% block
-body %} {% for skill in skills %}
-<p>{{skill}}</p>
-{% endfor %} {% endblock %}
+body %}
+<div class="d-flex flex-column align-items-center mt-4">
+  {% for skill in skills %}
+  <p>{{skill}}</p>
+  {% endfor %}
+</div>
+{% endblock %}

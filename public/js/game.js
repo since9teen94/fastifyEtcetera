@@ -9,11 +9,27 @@ function drawBoard() {
     );
   }
 }
-
+function manageConditions(win) {
+  if (win == "tie") {
+    const playAgain = confirm(`No winner, play again?`);
+    if (playAgain) {
+      clearBoard();
+      turn = turn == "X" ? "O" : "X";
+    }
+    return;
+  }
+  if (win) {
+    const playAgain = confirm(`Player ${turn} won! Play again?`);
+    if (playAgain) {
+      clearBoard();
+      turn = turn == "X" ? "O" : "X";
+    }
+    return;
+  }
+  turn = turn == "X" ? "O" : "X";
+}
 const randomNumber = Math.random();
-
 let turn = randomNumber >= 0.5 ? "X" : "O";
-
 function checkWin() {
   const winConditions = [
     [1, 2, 3],
@@ -33,43 +49,29 @@ function checkWin() {
     condition.every((space) => currentSpacesArray.includes(space))
   );
   if (win.length > 0) return win.length > 0;
-  if (allSpacesArray.length == 9) return "clear";
+  if (allSpacesArray.length == 9) return "tie";
 }
-
 function clearBoard() {
   const board = qs("#board");
   board.innerHTML = "";
   drawBoard();
   attachHandlers();
 }
-
-function addMark(e, text) {
-  e.target.classList.add(text);
-  e.target.innerText = text;
-  const win = checkWin();
-  if (win == "clear") {
-    alert(`NO WINNERS`);
-    clearBoard();
-    turn = text == "X" ? "O" : "X";
-    return;
-  }
-  if (win) {
-    alert(`WINNER ${turn}`);
-    clearBoard();
-  }
-  turn = text == "X" ? "O" : "X";
-}
-
 function attachHandlers() {
   const spaces = qsa("div.space");
   spaces.forEach((space) => {
-    space.addEventListener("click", (e) => {
+    space.addEventListener("mousedown", (e) => {
       if (e.target.classList.contains("X") || e.target.classList.contains("O"))
         return;
-      addMark(e, turn);
+      e.target.classList.add(turn);
+      e.target.innerText = turn;
+    });
+    space.addEventListener("mouseup", () => {
+      manageConditions(checkWin());
     });
   });
 }
-
-drawBoard();
-attachHandlers();
+document.addEventListener("DOMContentLoaded", () => {
+  drawBoard();
+  attachHandlers();
+});
