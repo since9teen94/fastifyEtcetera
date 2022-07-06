@@ -47,7 +47,6 @@ module.exports = async (app, opts) => {
         "select password from users where email=$1",
         [email]
       );
-      console.log(userPasswordQuery.rows[0]);
       const userPassword = userPasswordQuery.rows[0].password;
       const validPassword = await app.bcrypt.compare(password, userPassword);
       if (!validPassword) {
