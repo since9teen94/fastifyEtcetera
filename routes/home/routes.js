@@ -1,21 +1,4 @@
 module.exports = async (app, opts) => {
-  //function ptable(curPage, res) {
-  //let elements = require("../../public/js/elements.js");
-  //const chunkArray = (arr, size) =>
-  //arr.length > size
-  //? [arr.slice(0, size), ...chunkArray(arr.slice(size), size)]
-  //: [arr];
-  //const chunkedElements = chunkArray(elements, 5);
-  //const lastPage = chunkedElements.length;
-  //const context = {
-  //title: "Periodic Table",
-  //year: app.utils.year(),
-  //elements: chunkedElements[curPage - 1],
-  //lastPage,
-  //curPage,
-  //};
-  //return res.view("ptable.html", context);
-  //}
   app.get("/", async (req, res) => {
     const features = app.info.cards[0].data;
     features.forEach((feature) => {
