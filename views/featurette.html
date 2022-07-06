@@ -1,5 +1,5 @@
-{% macro textbox(ftitle='', contributions='', takeaways='', span='') %}
-<div class="col-sm-12 col-md-7 textbox">
+{% macro textbox(ftitle='', contributions='', takeaways='', span='', index=0) %}
+<div class="col-sm-12 col-md-7 textbox" id="textbox-{{index}}">
   <h2 class="featurette-heading display-2 fw-normal lh-1">
     {{ftitle}}
     <span class="text-muted">{{span}}</span>
@@ -12,23 +12,24 @@
   </p>
 </div>
 {% endmacro %} {% macro feature(ftitle='', contributions='',takeaways='',
-url='', odd='') %}
-<!--<div class="carousel-item {{active}}">-->
+url='', index=0) %}
 <div class="container px-2">
   <hr class="featurette-divider" />
-  <div class="row featurette">
-    {% if odd == true %} {{textbox(ftitle, contributions, takeaways, span)}} {%
-    endif %}
-    <div class="col-sm-12 col-md-5 video d-flex align-items-center">
+  <div class="row featurette" id="featurette-{{index}}">
+    {#{% if index % 2 == 1 %} #} {{textbox(ftitle, contributions, takeaways,
+    span)}} {#{% endif %}#}
+    <div
+      id="video-{{index}}"
+      class="col-sm-12 col-md-5 video d-flex align-items-center"
+    >
       <video controls width="100%">
         <source src="{{url}}" type="video/mp4" />
         <source src="{{url}}" type="video/ogg" />
         Your browser does not support the video tag.
       </video>
     </div>
-    {% if odd == false %} {{textbox(ftitle, contributions, takeaways, span)}} {%
-    endif %}
+    {#{% if index % 2 != 1 %} {{textbox(ftitle, contributions, takeaways, span
+    )}}#} {#{% endif %}#}
   </div>
 </div>
-<!--</div>-->
 {% endmacro %}

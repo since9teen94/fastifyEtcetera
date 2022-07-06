@@ -1,9 +1,9 @@
 {% import 'featurette.html' as f %} {% extends 'index.html' %} {% block title
 %}{{title}}{% endblock %} {% block body %}
-<div class="body">
+<div id="featurettes-div">
   {% for feature in features %} {{f.feature(feature.ftitle,
-  feature.contributions, feature.takeaways, feature.url, feature.odd)}} {%
+  feature.contributions, feature.takeaways, feature.url, feature.index)}} {%
   endfor %}
+  <script src="../js/home.js"></script>
+  {% endblock %}
 </div>
-<script src="js/home.js"></script>
-{% endblock %}
