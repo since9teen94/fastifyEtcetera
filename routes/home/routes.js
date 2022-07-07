@@ -1,4 +1,5 @@
 module.exports = async (app, opts) => {
+  let year = app.utils.year();
   app.get("/", async (req, res) => {
     let features = app.info.cards;
     features.forEach((feature, index) => {
@@ -7,12 +8,12 @@ module.exports = async (app, opts) => {
     context = {
       title: "Home",
       features,
-      year: app.utils.year(),
+      year,
     };
     return res.view("home.html", context);
   });
   app.get("/game", async (req, res) => {
-    const context = { title: "Tic-Tac-Toe", year: app.utils.year() };
+    const context = { title: "Tic-Tac-Toe", year };
     return res.view("game.html", context);
   });
   app.get("/skills", async (req, res) => {
@@ -22,17 +23,17 @@ module.exports = async (app, opts) => {
       title: "Skills",
       skillsOne: skillArrays[0],
       skillsTwo: skillArrays[1],
-      year: app.utils.year(),
+      year,
     };
     return res.view("skills.html", context);
   });
   app.get("/links", async (req, res) => {
     const links = app.info.links;
-    const context = { title: "Links", links, year: app.utils.year() };
+    const context = { title: "Links", links, year };
     return res.view("links.html", context);
   });
   app.get("/quotes", async (req, res) => {
-    const context = { title: "Office Quotes", year: app.utils.year() };
+    const context = { title: "Office Quotes", year };
     return res.view("officeQuotes.html", context);
   });
   app.get("/ptable", async (req, res) => {

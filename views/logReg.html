@@ -2,6 +2,7 @@
 <div class="form-floating mb-3">
   <input type="{{type}}" class="form-control" name="{{field}}" id="{{field}}" />
   <label for="{{field}}">{{text}}</label>
+  <p id="{{field}}-error" class="error"></p>
 </div>
 {% endmacro %} {% extends 'index.html' %} {% block title %}{{title}}{% endblock
 %}{% block body %}
@@ -39,20 +40,14 @@
   <div class="col-sm-1"></div>
   <div class="col-sm-6 d-flex align-items-center">
     <main class="form-signin w-100 m-auto">
-      <form id="logRegForm" data-type="{{title}}">
-        <!--<img class="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
+      <form id="logRegForm" data-type="{{title}}" novalidate>
         <h1 class="h3 mb-3 fw-normal">{{title}}</h1>
-
         {% if title=='Register' %} {{formFloating('firstName', 'First Name')}}
         {{formFloating('lastName', 'Last Name')}} {% endif %}
         {{formFloating('email', 'Email', 'email')}} {{formFloating('password',
         'Password', 'password')}} {% if title=='Register' %}
         {{formFloating('confirmPassword', 'Confirm Password', 'password')}} {%
         endif %}
-
-        <!--<div class="checkbox mb-3">-->
-        <!--<label> <input type="checkbox" value="remember-me" /> Remember me </label>-->
-        <!--</div>-->
         <button class="w-100 btn btn-lg btn-primary" type="submit">
           {{title}}
         </button>
