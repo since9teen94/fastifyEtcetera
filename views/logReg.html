@@ -8,37 +8,27 @@
 %}{% block body %}
 <div class="row">
   <div
-    class="col-sm-4"
-    style="position: relative; text-align: center; color: white"
+    class="d-none d-sm-flex col-sm-4 px-4 justify-content-center"
+    style="
+      position: relative;
+      text-align: center;
+      color: white;
+      background-image: linear-gradient(
+          rgba(165, 226, 240, 0.25),
+          rgba(165, 226, 240, 0.85)
+        ),
+        url('../static/images/imgOne.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100vh;
+      opacity: 0.7;
+    "
   >
-    <div
-      class="col-sm-12"
-      style="
-        background-image: linear-gradient(
-            rgba(165, 226, 240, 0.25),
-            rgba(165, 226, 240, 0.85)
-          ),
-          url('../static/images/imgOne.jpg');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 100vh;
-        opacity: 0.7;
-      "
-    ></div>
-    <div
-      style="
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      "
-    >
-      Hello
-    </div>
+    <img src="../static/svg/books.svg" alt="Books svg" />
   </div>
-  <div class="col-sm-1"></div>
-  <div class="col-sm-6 d-flex align-items-center">
+  <div class="col-sm-1 d-xs-none"></div>
+  <div class="col-sm-6 col-xs-12 d-flex align-items-center px-4">
     <main class="form-signin w-100 m-auto">
       <form id="logRegForm" data-type="{{title}}" novalidate>
         <h1 class="h3 mb-3 fw-normal">{{title}}</h1>
