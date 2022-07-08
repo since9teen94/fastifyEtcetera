@@ -1,4 +1,4 @@
-//const dotenv = require("dotenv").config();
+const dotenv = require("dotenv").config();
 const fp = require("fastify-plugin");
 module.exports = fp(async (app, opts) => {
   app.decorate("env", function (variable) {

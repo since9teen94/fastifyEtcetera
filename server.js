@@ -1,6 +1,7 @@
 "use strict";
-//const dotenv = require("dotenv").config();
-const port = process.env.PORT || 3000;
+const dotenv = require("dotenv").config();
+//const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 const server = require("./app")({
   //logger: { level: "info", transport: { target: "pino-pretty" } },
   logger: true,
