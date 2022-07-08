@@ -8,5 +8,6 @@ const server = require("./app")({
 });
 
 server.ready(() => {
-  server.listen({ port }, () => console.log());
+  //server.listen({ port }, () => console.log());
+  server.listen(process.env.PORT, "0.0.0.0");
 });
