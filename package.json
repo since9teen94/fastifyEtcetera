@@ -19,8 +19,7 @@
     "redom": "^3.29.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.18",
-    "pino-pretty": "^8.1.0"
+    "nodemon": "^2.0.18"
   },
   "scripts": {
     "start": "node server.js"
