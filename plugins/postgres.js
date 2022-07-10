@@ -4,5 +4,8 @@ module.exports = fp(async (app, opts) => {
   const connectionString = app.env("DATABASE_URL") || app.env("CONN_STRING");
   app.register(require("@fastify/postgres"), {
     connectionString,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   });
 });
