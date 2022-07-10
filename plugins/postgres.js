@@ -5,5 +5,5 @@ module.exports = fp(async (app, opts) => {
   let opts = { connectionString };
   if (connectionString == app.env("DATABASE_URL"))
     opts.rejectUnauthorized = true;
-  app.register(require("@fastify/postgres"), opts);
+  app.register(require("@fastify/postgres"), {...opts});
 });
