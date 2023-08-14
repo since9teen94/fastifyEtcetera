@@ -17,10 +17,7 @@ url='', index=0) %}
   <hr class="featurette-divider" />
   <div class="row featurette" id="featurette-{{index}}">
     {{textbox(ftitle, contributions, takeaways, span)}}
-    <div
-      id="video-{{index}}"
-      class="col-sm-12 col-md-5 video d-flex align-items-center"
-    >
+    <div id="video-{{index}}" class="col-sm-12 col-md-5 video d-flex align-items-center">
       <video controls width="100%">
         <source src="{{url}}" type="video/mp4" />
         <source src="{{url}}" type="video/ogg" />

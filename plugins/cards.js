@@ -1,4 +1,4 @@
-const fp = require("fastify-plugin");
+const fp = require("fastify-plugin")
 module.exports = fp(async (app, opts) => {
   app.decorate("info", {
     cards: [
@@ -26,14 +26,14 @@ module.exports = fp(async (app, opts) => {
           "Learned a lot about Python & backend development in this and other API projects, such as caching, multithreading, generator functions, creating/using decorators, class methods, using tools such as Postman, cURL, python requests library to interact with APIs, document databases, etc.",
       },
     ],
-    joke: async function () {
-      let request = await fetch("https://www.officeapi.dev/api/quotes/random");
-      let response = await request.json();
+    joke: async function() {
+      let request = await fetch("https://www.officeapi.dev/api/quotes/random")
+      let response = await request.json()
       let data = {
         quote: `"${response.data.content}"`,
         fullName: `- ${response.data.character.firstname} ${response.data.character.lastname}`,
-      };
-      return data;
+      }
+      return data
     },
     skills: [
       "Python",
@@ -76,5 +76,5 @@ module.exports = fp(async (app, opts) => {
         //icon: <GitHubIcon />,
       },
     ],
-  });
-});
+  })
+})

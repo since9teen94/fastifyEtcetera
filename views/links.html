@@ -1,10 +1,11 @@
-{% extends 'index.html' %} {% block title %}{{title}}{% endblock %} {% block
-body %}
+{% extends 'index.html' %}
+{% block title %}{{title}}{% endblock title %}
+{% block body %}
 <div class="d-flex justify-content-around mt-4">
-  <div></div>
+  <div class="invisible"></div>
   {% for link in links %}
-  <a href="{{link.url}}" class="mx-2">{{link.text}}</a>
+  <a href="{{link.href}}" class="mx-2" target="_blank" rel="noopener noreferrer">{{link.text}}</a>
   {% endfor %}
-  <div></div>
+  <div class="invisible"></div>
 </div>
-{% endblock %}
+{% endblock body %}
